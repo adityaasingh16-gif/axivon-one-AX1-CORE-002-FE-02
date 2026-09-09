@@ -1,0 +1,33 @@
+{
+  "name": "axivon-one",
+  "version": "1.0.0-phase1.0",
+  "description": "AXIVON ONE — Modular & Reusable Software Platform by Axivon Technologies",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "modules/core/*"
+  ],
+  "scripts": {
+    "build": "turbo run build || npm run build --workspaces --if-present",
+    "lint": "turbo run lint || npm run lint --workspaces --if-present",
+    "test": "turbo run test || npm run test --workspaces --if-present",
+    "test:unit": "turbo run test:unit",
+    "test:integration": "turbo run test:integration",
+    "test:e2e": "turbo run test:e2e",
+    "dev": "turbo run dev",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "axivon",
+    "axivon-one",
+    "modular-platform",
+    "reusable-architecture",
+    "typescript"
+  ],
+  "author": "Axivon Technologies",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
