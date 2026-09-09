@@ -34,5 +34,17 @@
       "@axivon/core-*": ["modules/core/*/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "dist", "build", "coverage", ".next"]
+  "include": [
+    "apps/**/*",
+    "packages/**/*",
+    "modules/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    ".next",
+    "services"
+  ]
 }

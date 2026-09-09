@@ -10,9 +10,9 @@
     "test": "echo 'Frontend test placeholder'"
   },
   "dependencies": {
-    "@axivon/types": "workspace:*",
-    "@axivon/ui": "workspace:*",
-    "@axivon/validation": "workspace:*",
-    "@axivon/utils": "workspace:*"
+    "@axivon/types": "*",
+    "@axivon/ui": "*",
+    "@axivon/validation": "*",
+    "@axivon/utils": "*"
   }
 }
