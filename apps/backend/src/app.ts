@@ -1,6 +1,6 @@
 // AXIVON ONE Backend Application Core
 import { APP_CONFIG } from '@axivon/config';
-import { AuthenticationBackendService } from '../../../../modules/core/authentication/backend/index.js';
+import { AuthenticationBackendService } from '../../../modules/core/authentication/backend/index.js';
 
 export const createApp = () => {
   return {
