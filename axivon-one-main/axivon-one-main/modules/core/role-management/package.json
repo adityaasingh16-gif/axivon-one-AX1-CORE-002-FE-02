@@ -1,0 +1,6 @@
+{
+  "name": "@axivon/core-role-management",
+  "version": "1.0.0-phase1.0",
+  "description": "Role Management Module for AXIVON ONE (CORE-003)",
+  "main": "./shared/index.ts"
+}
