@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status Management — AXIVON ONE</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="gate" class="gate"><div class="spin" aria-hidden="true"></div><p>Checking your session…</p></div>
+<div class="app-shell" id="appShell" style="display:none;">
+  <aside class="app-sidebar">
+    <a href="index.html" class="brand">
+      <span class="brand-logo-wrap">
+        <img class="brand-logo" src="assets/images/axivon-logo.png" alt="Axivon Technologies" width="786" height="727">
+      </span>
+    </a>
+
+    <nav class="side-nav" aria-label="Dashboard">
+      <p class="side-nav-label">Workspace</p>
+      <a href="dashboard.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/></svg>
+        Overview
+      </a>
+      <a href="user-management.html" class="is-active">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3.3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.7-3.4 3.2-5.3 5.5-5.3s4.8 1.9 5.5 5.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="17" cy="8.5" r="2.6" stroke="currentColor" stroke-width="1.5"/><path d="M15.3 13.3c2 .3 3.7 1.9 4.2 4.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Users
+      </a>
+      <a href="sessions.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Sessions
+      </a>
+      <a href="security.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9-4-1-7-4.4-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Security
+      </a>
+      <a href="settings.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H4a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3H10.5a1.7 1.7 0 0 0 1-1.6V4a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9V10.5a1.7 1.7 0 0 0 1.6 1H20a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="avatar" id="sideAvatar">--</div>
+        <div class="who">
+          <strong id="sideName">&nbsp;</strong>
+          <span id="sideEmail">&nbsp;</span>
+        </div>
+      </div>
+      <button type="button" class="btn btn-on-ink btn-block btn-sm" id="logoutBtn">
+        <span class="spinner"></span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Log out
+      </button>
+    </div>
+  </aside>
+
+
+  <main class="app-main">
+<div class="page-head"><div><p class="eyebrow">User Management</p><h1>Status</h1><p>See and manage Active, Pending, Inactive, Suspended and Banned users.</p></div><a href="users.html" class="btn btn-ghost">Open user list</a></div>
+<section class="panel"><div class="panel-head"><div><h2>Status overview</h2><p>Choose a status to see matching users. Changes are made from the user details page.</p></div></div><div class="feature-grid" id="statusCards"></div></section>
+  </main>
+</div>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/users.js"></script>
+<script>
+(function(){
+ var Auth=window.AxivonAuth,UI=window.AxivonUI,Users=window.AxivonUsers; var session=Auth.requireAuth(); if(!session)return; var u=Auth.currentUser(); if(!u){Auth.clearSession();location.replace('login.html');return;}
+ document.getElementById('gate').style.display='none';document.getElementById('appShell').style.display='grid';document.getElementById('sideAvatar').textContent=Auth.initials(u.fullName);document.getElementById('sideName').textContent=u.fullName;document.getElementById('sideEmail').textContent=u.email;document.getElementById('logoutBtn').addEventListener('click',function(){Auth.logout();location.href='login.html?loggedout=1';});
+ var counts={active:0,pending:0,inactive:0,suspended:0,banned:0}; Users.getAll().forEach(function(x){counts[x.status]=(counts[x.status]||0)+1;}); var labels=Users.STATUS_LABEL; document.getElementById('statusCards').innerHTML=Users.STATUSES.map(function(k){return '<a class="feature-card" href="users.html?status='+k+'"><h3>'+labels[k]+'</h3><p>'+counts[k]+' user(s) currently in this state.</p><span class="btn btn-ghost btn-sm">View '+labels[k]+' →</span></a>';}).join('');
+})();
+</script>
+</body>
+</html>
