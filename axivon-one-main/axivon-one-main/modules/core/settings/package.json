@@ -1,0 +1,6 @@
+{
+  "name": "@axivon/core-settings",
+  "version": "1.0.0-phase1.0",
+  "description": "Settings Module for AXIVON ONE (CORE-007)",
+  "main": "./shared/index.ts"
+}
