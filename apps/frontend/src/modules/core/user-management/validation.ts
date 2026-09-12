@@ -1,4 +1,4 @@
-import { isEmailValid } from '@axivon/ui';
+import { isEmailValid } from '@axivon/validation';
 import type { UserProfileDraft } from './types.js';
 
 export interface UserValidationErrors {
