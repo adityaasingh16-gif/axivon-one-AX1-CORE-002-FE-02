@@ -1,6 +1,0 @@
-{
-  "name": "@axivon/core-organization-management",
-  "version": "1.0.0-phase1.0",
-  "description": "Organization Management Module for AXIVON ONE (CORE-005)",
-  "main": "./shared/index.ts"
-}

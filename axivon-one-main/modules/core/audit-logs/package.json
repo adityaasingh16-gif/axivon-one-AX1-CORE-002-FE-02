@@ -1,6 +1,0 @@
-{
-  "name": "@axivon/core-audit-logs",
-  "version": "1.0.0-phase1.0",
-  "description": "Audit Logs Module for AXIVON ONE (CORE-010)",
-  "main": "./shared/index.ts"
-}

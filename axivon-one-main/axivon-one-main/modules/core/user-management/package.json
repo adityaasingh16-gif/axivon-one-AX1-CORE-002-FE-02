@@ -1,6 +1,0 @@
-{
-  "name": "@axivon/core-user-management",
-  "version": "1.0.0-phase1.0",
-  "description": "User Management Module for AXIVON ONE (CORE-002)",
-  "main": "./shared/index.ts"
-}
