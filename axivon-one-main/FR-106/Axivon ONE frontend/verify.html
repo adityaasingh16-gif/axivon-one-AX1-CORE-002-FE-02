@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify your email — AXIVON ONE</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <aside class="auth-brand">
+    <div class="auth-brand-top">
+      <a href="index.html" class="brand">
+        <span class="brand-logo-wrap">
+          <img class="brand-logo" src="assets/images/axivon-logo.png" alt="Axivon Technologies" width="786" height="727">
+        </span>
+      </a>
+    </div>
+    <div class="auth-brand-mid">
+      <h2>One code, one purpose.</h2>
+      <p>Code will be confirmed.</p>
+      <div class="auth-points">
+        <div class="auth-point">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Six digits, generated for verification.</span>
+        </div>
+        <div class="auth-point">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Resending will change the code previously sent.</span>
+        </div>
+      </div>
+    </div>
+    <svg class="auth-orbit" viewBox="0 0 420 420" aria-hidden="true">
+      <circle cx="210" cy="210" r="200" stroke="rgba(247,245,240,0.08)" fill="none" stroke-width="1"/>
+      <circle cx="210" cy="210" r="150" stroke="rgba(247,245,240,0.1)" fill="none" stroke-width="1"/>
+      <circle cx="210" cy="210" r="100" stroke="rgba(247,245,240,0.12)" fill="none" stroke-width="1"/>
+      <circle cx="210" cy="10" r="4" fill="#E4C48C"/>
+      <circle cx="410" cy="210" r="3" fill="#E4C48C" opacity=".6"/>
+      <circle cx="60" cy="330" r="3" fill="#E4C48C" opacity=".4"/>
+    </svg>
+  </aside>
+
+  <div class="auth-form-side">
+    <div class="auth-form-wrap">
+
+      <div class="auth-form-mobile-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-logo-wrap">
+            <img class="brand-logo" src="assets/images/axivon-logo.png" alt="Axivon Technologies" width="786" height="727">
+          </span>
+        </a>
+      </div>
+
+      <div id="noEmailState" class="state-panel">
+        <div class="icon-badge info"></div>
+        <h1>Verify your email</h1>
+        <p style="margin-bottom:20px;">We couldn't find a pending verification in this browser. Start from registration, or log in if you already verified.</p>
+        <div style="display:flex;gap:10px;">
+          <a href="register.html" class="btn btn-primary">Create account</a>
+          <a href="login.html" class="btn btn-ghost">Log in</a>
+        </div>
+      </div>
+
+      <div id="codeState" class="state-panel">
+        <div class="auth-form-header">
+          <h1>Check your inbox</h1>
+          <p>Enter the 6-digit code sent to <strong id="emailDisplay">your email</strong>.</p>
+        </div>
+
+        <div id="topAlert" class="alert alert-hidden" role="status" aria-live="polite"></div>
+
+        <form id="verifyForm" class="form-stack" novalidate style="margin-top:14px;">
+          <div class="field" id="codeField">
+            <label id="codeLabel" for="code0">Verification code</label>
+            <div class="code-row" role="group" aria-labelledby="codeLabel">
+              <input class="code-box" id="code0" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code">
+              <input class="code-box" id="code1" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+              <input class="code-box" id="code2" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+              <input class="code-box" id="code3" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+              <input class="code-box" id="code4" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+              <input class="code-box" id="code5" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+            </div>
+            <p class="error-text"></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="verifySubmit">
+            <span class="spinner"></span>Verify email
+          </button>
+        </form>
+
+        <div id="demoPanel" class="demo-panel">
+          <div class="demo-label"> Demo mode — no real email is sent</div>
+          <div class="demo-value" id="demoCode">000000</div>
+          <p>Use the code above to continue, or tap resend to generate a new one.</p>
+        </div>
+
+        <p class="helper-text" style="text-align:center;margin-top:18px;">
+          Didn't get it?
+          <button type="button" id="resendBtn" class="hint-link" style="background:none;border:none;cursor:pointer;padding:0;font:inherit;">Resend code</button>
+          <span id="resendCooldown" style="display:none;">Resend available in <span id="cooldownSeconds">30</span>s</span>
+        </p>
+      </div>
+
+      <div id="successState" class="state-panel">
+        <div class="icon-badge success"></div>
+        <h1>Email verified</h1>
+        <p style="margin-bottom:20px;">Your account is active. Redirecting you to log in\u2026</p>
+        <a href="login.html?verified=1" class="btn btn-primary">Go to log in now</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var Auth = window.AxivonAuth, UI = window.AxivonUI;
+  Auth.guestOnly();
+
+  document.getElementById('noEmailState').querySelector('.icon-badge').innerHTML = UI.icon('info');
+  document.getElementById('successState').querySelector('.icon-badge').innerHTML = UI.icon('check');
+  document.querySelector('.demo-label').innerHTML = '<span style="display:inline-flex">' + UI.icon('info') + '</span> Demo mode \u2014 no real email is sent';
+
+  function showState(id){
+    document.querySelectorAll('.state-panel').forEach(function(p){ p.classList.remove('is-active'); });
+    document.getElementById(id).classList.add('is-active');
+  }
+
+  var emailParam = UI.qs('email');
+  var email = emailParam ? decodeURIComponent(emailParam) : Auth.getPendingEmail();
+  var user = email ? Auth.findUserByEmail(email) : null;
+
+  if (!email || !user) {
+    showState('noEmailState');
+    return;
+  }
+  Auth.setPendingEmail(email);
+
+  if (user.verified) {
+    showState('successState');
+    document.querySelector('#successState p').textContent = 'This account is already verified.';
+    setTimeout(function(){ location.href = 'login.html?verified=1'; }, 900);
+    return;
+  }
+
+  showState('codeState');
+  document.getElementById('emailDisplay').textContent = email;
+  document.getElementById('demoCode').textContent = user.verificationCode;
+
+  var codeInputs = Array.from(document.querySelectorAll('.code-box'));
+  codeInputs[0].focus();
+
+  codeInputs.forEach(function(input, idx){
+    input.addEventListener('input', function(){
+      input.value = input.value.replace(/[^0-9]/g, '').slice(0, 1);
+      if (input.value && idx < codeInputs.length - 1) codeInputs[idx + 1].focus();
+    });
+    input.addEventListener('keydown', function(e){
+      if (e.key === 'Backspace' && !input.value && idx > 0) codeInputs[idx - 1].focus();
+    });
+    input.addEventListener('paste', function(e){
+      var text = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+      if (text.length) {
+        e.preventDefault();
+        text.slice(0, 6).split('').forEach(function(ch, i){ if (codeInputs[i]) codeInputs[i].value = ch; });
+        var next = Math.min(text.length, 6) - 1;
+        codeInputs[Math.max(next, 0)].focus();
+      }
+    });
+  });
+
+  var topAlert = document.getElementById('topAlert');
+  var codeField = document.getElementById('codeField');
+  var form = document.getElementById('verifyForm');
+  var submitBtn = document.getElementById('verifySubmit');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    UI.hideAlert(topAlert);
+    var code = codeInputs.map(function(i){ return i.value; }).join('');
+    if (code.length < 6) {
+      UI.setFieldError(codeField, 'Enter all 6 digits.');
+      return;
+    }
+    UI.clearFieldError(codeField);
+    UI.setLoading(submitBtn, true);
+
+    setTimeout(function(){
+      var result = Auth.verifyCode(email, code);
+      UI.setLoading(submitBtn, false);
+      if (!result.ok) {
+        UI.setFieldError(codeField, result.error);
+        UI.showAlert(topAlert, 'error', 'Verification failed', result.error);
+        codeInputs.forEach(function(i){ i.value = ''; });
+        codeInputs[0].focus();
+        return;
+      }
+      Auth.clearPendingEmail();
+      showState('successState');
+      setTimeout(function(){ location.href = 'login.html?verified=1'; }, 1400);
+    }, 650);
+  });
+
+  var resendBtn = document.getElementById('resendBtn');
+  var cooldownEl = document.getElementById('resendCooldown');
+  var cooldownSecondsEl = document.getElementById('cooldownSeconds');
+  var cooldownTimer = null;
+
+  function startCooldown(seconds){
+    resendBtn.style.display = 'none';
+    cooldownEl.style.display = 'inline';
+    var remaining = seconds;
+    cooldownSecondsEl.textContent = remaining;
+    cooldownTimer = setInterval(function(){
+      remaining -= 1;
+      cooldownSecondsEl.textContent = remaining;
+      if (remaining <= 0) {
+        clearInterval(cooldownTimer);
+        resendBtn.style.display = 'inline';
+        cooldownEl.style.display = 'none';
+      }
+    }, 1000);
+  }
+
+  resendBtn.addEventListener('click', function(){
+    var result = Auth.resendVerification(email);
+    if (result.ok) {
+      document.getElementById('demoCode').textContent = result.code;
+      UI.showAlert(topAlert, 'info', 'New code sent', 'Your previous code no longer works.');
+      UI.toast('Verification code resent');
+      startCooldown(30);
+    } else {
+      UI.showAlert(topAlert, 'error', 'Couldn\u2019t resend', result.error);
+    }
+  });
+
+  startCooldown(30);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Users — AXIVON ONE</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <div class="spin" aria-hidden="true"></div>
+  <p>Checking your session&hellip;</p>
+</div>
+
+<div class="app-shell" id="appShell" style="display:none;">
+  <aside class="app-sidebar">
+    <a href="index.html" class="brand">
+      <span class="brand-logo-wrap">
+        <img class="brand-logo" src="assets/images/axivon-logo.png" alt="Axivon Technologies" width="786" height="727">
+      </span>
+    </a>
+
+    <nav class="side-nav" aria-label="Dashboard">
+      <p class="side-nav-label">Workspace</p>
+      <a href="dashboard.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/></svg>
+        Overview
+      </a>
+      <a href="users.html" class="is-active">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3.3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.7-3.4 3.2-5.3 5.5-5.3s4.8 1.9 5.5 5.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="17" cy="8.5" r="2.6" stroke="currentColor" stroke-width="1.5"/><path d="M15.3 13.3c2 .3 3.7 1.9 4.2 4.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Users
+      </a>
+      <a href="sessions.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Sessions
+      </a>
+      <a href="security.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9-4-1-7-4.4-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Security
+      </a>
+      <a href="settings.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H4a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3H10.5a1.7 1.7 0 0 0 1-1.6V4a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9V10.5a1.7 1.7 0 0 0 1.6 1H20a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="avatar" id="sideAvatar">--</div>
+        <div class="who">
+          <strong id="sideName">&nbsp;</strong>
+          <span id="sideEmail">&nbsp;</span>
+        </div>
+      </div>
+      <button type="button" class="btn btn-on-ink btn-block btn-sm" id="logoutBtn">
+        <span class="spinner"></span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Log out
+      </button>
+    </div>
+  </aside>
+
+  <main class="app-main">
+    <div class="page-head">
+      <div>
+        <h1>Users</h1>
+        <p>Manage profiles, status and membership for your workspace.</p>
+      </div>
+      <a href="user-form.html" class="btn btn-primary" id="createUserBtn" data-route="user-create">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Create user
+      </a>
+    </div>
+
+    <section class="panel">
+      <div class="list-toolbar">
+        <div class="field search-wrap" style="margin:0;">
+          <input class="input" type="search" id="searchInput" placeholder="Search by name, email, department&hellip;" aria-label="Search users">
+        </div>
+        <select class="select-input" id="statusFilter" aria-label="Filter by status">
+          <option value="all">All statuses</option>
+          <option value="active">Active</option>
+          <option value="pending">Pending</option>
+          <option value="inactive">Inactive</option>
+          <option value="suspended">Suspended</option>
+        </select>
+        <select class="select-input" id="membershipFilter" aria-label="Filter by membership">
+          <option value="all">All memberships</option>
+          <option value="free">Free</option>
+          <option value="basic">Basic</option>
+          <option value="pro">Pro</option>
+          <option value="enterprise">Enterprise</option>
+        </select>
+      </div>
+
+      <div id="tableWrap" class="table-wrap">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Membership</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersTbody"></tbody>
+        </table>
+      </div>
+
+      <div id="stateWrap" style="display:none;"></div>
+    </section>
+  </main>
+</div>
+
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/users.js"></script>
+<script>
+(function(){
+  var Auth = window.AxivonAuth, UI = window.AxivonUI, Users = window.AxivonUsers;
+
+  var session = Auth.requireAuth();
+  if (!session) return; // requireAuth already redirected
+
+  var user = Auth.currentUser();
+  if (!user) {
+    Auth.clearSession();
+    location.replace('login.html');
+    return;
+  }
+
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('appShell').style.display = 'grid';
+
+  document.getElementById('sideAvatar').textContent = Auth.initials(user.fullName);
+  document.getElementById('sideName').textContent = user.fullName;
+  document.getElementById('sideEmail').textContent = user.email;
+
+  function doLogout(btn){
+    UI.setLoading(btn, true);
+    setTimeout(function(){
+      Auth.logout();
+      location.href = 'login.html?loggedout=1';
+    }, 400);
+  }
+  document.getElementById('logoutBtn').addEventListener('click', function(){ doLogout(this); });
+
+  // ---------------- Users list ----------------
+  var tableWrap = document.getElementById('tableWrap');
+  var stateWrap = document.getElementById('stateWrap');
+  var tbody = document.getElementById('usersTbody');
+  var searchInput = document.getElementById('searchInput');
+  var statusFilter = document.getElementById('statusFilter');
+  var membershipFilter = document.getElementById('membershipFilter');
+
+  var S = Users.Store.getState();
+  var routeParams = new URLSearchParams(window.location.search);
+  var routeStatus = routeParams.get('status');
+  var routeMembership = routeParams.get('membership');
+  if (!routeStatus && !routeMembership) { S.statusFilter = 'active'; statusFilter.value = 'active'; }
+  if (routeStatus && Users.STATUSES.indexOf(routeStatus) !== -1) { S.statusFilter = routeStatus; statusFilter.value = routeStatus; }
+  if (routeMembership && Users.MEMBERSHIPS.indexOf(routeMembership) !== -1) { S.membershipFilter = routeMembership; membershipFilter.value = routeMembership; }
+
+  function showTable(){ tableWrap.style.display = ''; stateWrap.style.display = 'none'; }
+  function showState(kind, opts){ tableWrap.style.display = 'none'; stateWrap.style.display = ''; Users.renderDataState(stateWrap, kind, opts); }
+
+  function renderList(){
+    var visible = Users.filteredUsers();
+    if (S.error) {
+      showState('error', {
+        actionHtml: '<button type="button" class="btn btn-ghost btn-sm" id="retryLoadBtn">Try again</button>'
+      });
+      var retry = document.getElementById('retryLoadBtn');
+      if (retry) retry.addEventListener('click', load);
+      return;
+    }
+    if (!visible.length) {
+      var isFiltered = S.searchQuery || (S.statusFilter !== 'all') || (S.membershipFilter !== 'all');
+      showState('empty', isFiltered
+        ? { title: 'No matching users', message: 'Try a different search term or clear the filters.' }
+        : { title: 'No users yet', message: 'Create your first user to get started.', actionHtml: '<a href="user-form.html" class="btn btn-brass btn-sm">Create user</a>' });
+      return;
+    }
+    showTable();
+    Users.Components.userTable(tbody, visible);
+  }
+
+  function load(){
+    S.loading = true;
+    S.error = null;
+    showState('loading');
+    // simulate a brief async fetch of mock data
+    setTimeout(function(){
+      try {
+        S.users = Users.getAll();
+        S.loading = false;
+        renderList();
+      } catch (e) {
+        S.loading = false;
+        S.error = 'load-failed';
+        renderList();
+      }
+    }, 450);
+  }
+
+  searchInput.addEventListener('input', UI.debounce(function(){
+    S.searchQuery = searchInput.value;
+    renderList();
+  }, 200));
+  statusFilter.addEventListener('change', function(){ S.statusFilter = statusFilter.value; renderList(); });
+  membershipFilter.addEventListener('change', function(){ S.membershipFilter = membershipFilter.value; renderList(); });
+
+  load();
+})();
+</script>
+</body>
+</html>
