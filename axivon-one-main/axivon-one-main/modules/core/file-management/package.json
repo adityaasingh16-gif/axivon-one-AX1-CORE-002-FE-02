@@ -1,6 +1,0 @@
-{
-  "name": "@axivon/core-file-management",
-  "version": "1.0.0-phase1.0",
-  "description": "File Management Module for AXIVON ONE (CORE-009)",
-  "main": "./shared/index.ts"
-}

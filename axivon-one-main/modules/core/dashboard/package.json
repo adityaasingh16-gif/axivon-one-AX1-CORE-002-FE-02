@@ -1,6 +1,0 @@
-{
-  "name": "@axivon/core-dashboard",
-  "version": "1.0.0-phase1.0",
-  "description": "Dashboard Module for AXIVON ONE (CORE-006)",
-  "main": "./shared/index.ts"
-}

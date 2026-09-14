@@ -1,6 +1,0 @@
-{
-  "name": "@axivon/core-reporting-foundation",
-  "version": "1.0.0-phase1.0",
-  "description": "Reporting Foundation Module for AXIVON ONE (CORE-012)",
-  "main": "./shared/index.ts"
-}

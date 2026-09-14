@@ -1,6 +1,0 @@
-{
-  "name": "@axivon/utils",
-  "version": "1.0.0-phase1.0",
-  "description": "AXIVON ONE Common Utility Functions",
-  "main": "./src/index.ts"
-}

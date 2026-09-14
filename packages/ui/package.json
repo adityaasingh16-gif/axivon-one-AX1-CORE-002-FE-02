@@ -1,7 +1,0 @@
-{
-  "name": "@axivon/ui",
-  "version": "1.0.0-phase1.0",
-  "description": "AXIVON ONE Design System & UI Component Library",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts"
-}

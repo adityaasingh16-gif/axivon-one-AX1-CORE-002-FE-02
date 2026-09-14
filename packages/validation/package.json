@@ -1,6 +1,0 @@
-{
-  "name": "@axivon/validation",
-  "version": "1.0.0-phase1.0",
-  "description": "AXIVON ONE Shared Validation Schemas",
-  "main": "./src/index.ts"
-}
