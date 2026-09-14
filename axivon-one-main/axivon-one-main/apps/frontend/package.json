@@ -1,0 +1,18 @@
+{
+  "name": "@axivon/frontend",
+  "version": "1.0.0-phase1.0",
+  "description": "AXIVON ONE Frontend Application",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Frontend dev server placeholder'",
+    "build": "echo 'Frontend build placeholder'",
+    "lint": "echo 'Frontend lint placeholder'",
+    "test": "echo 'Frontend test placeholder'"
+  },
+  "dependencies": {
+    "@axivon/types": "*",
+    "@axivon/ui": "*",
+    "@axivon/validation": "*",
+    "@axivon/utils": "*"
+  }
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AXIVON ONE — Users</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <!-- AXIVON TECHNOLOGIES LOGO -->
+            <div class="brand-logo-wrapper">
+
+                <img
+                    src="assets/img/axivon.png"
+                    alt="AXIVON Technologies Logo"
+                    class="brand-logo"
+                >
+
+            </div>
+
+
+            <!-- BRAND TEXT -->
+            <div class="brand-text">
+
+                <div class="brand-name">
+                    AXIVON
+                </div>
+
+                <div class="brand-sub">
+                    ONE
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+        <nav class="navigation">
+
+            <a
+                href="#/users"
+                class="nav-item active"
+            >
+
+                <span>
+                    Users
+                </span>
+
+                <span id="navUserCount">
+                    0
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- =================================================
+             SIDEBAR FOOTER
+        ================================================== -->
+        <div class="sidebar-footer">
+
+            <div class="footer-title">
+                USER MANAGEMENT
+            </div>
+
+            <div class="footer-subtitle">
+                Frontend workspace
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+        <header class="topbar">
+
+            <div>
+
+                <div class="eyebrow">
+                    AXIVON ONE / ADMIN
+                </div>
+
+                <h1 id="pageTitle">
+                    Users
+                </h1>
+
+            </div>
+
+
+            <!-- TOPBAR ACTIONS -->
+            <div class="topbar-actions">
+
+                <span
+                    class="api-mode"
+                    id="apiMode"
+                >
+                    DEMO API
+                </span>
+
+
+                <!-- ADMIN AVATAR -->
+                <a
+                    href="#/users"
+                    class="admin-avatar"
+                    aria-label="Admin"
+                >
+
+                    <img
+                        src="assets/img/axivon.png"
+                        alt="AXIVON Technologies"
+                        class="admin-logo"
+                    >
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             PAGE CONTENT
+        ================================================== -->
+        <main
+            id="app"
+            class="page-content"
+            aria-live="polite"
+        ></main>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST CONTAINER
+====================================================== -->
+<div
+    id="toastContainer"
+    class="toast-container"
+    aria-live="assertive"
+    aria-atomic="true"
+></div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<!-- API SERVICE -->
+<script src="assets/js/api.js"></script>
+
+<!-- UI HELPERS -->
+<script src="assets/js/ui.js"></script>
+
+<!-- APPLICATION -->
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
