@@ -4,10 +4,11 @@
   "description": "AXIVON ONE Backend Application",
   "private": true,
   "scripts": {
-    "dev": "echo 'Backend dev server placeholder'",
-    "build": "echo 'Backend build placeholder'",
-    "lint": "echo 'Backend lint placeholder'",
-    "test": "echo 'Backend test placeholder'"
+    "dev": "node --enable-source-maps dist/apps/backend/src/server.js",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --root ../.. modules/core/authentication/tests --exclude 'apps/backend/dist/**'",
+    "test:watch": "vitest --root ../.. modules/core/authentication/tests --exclude 'apps/backend/dist/**'"
   },
   "dependencies": {
     "@axivon/types": "*",

@@ -11,8 +11,9 @@
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
-    "test:unit": "echo 'Unit tests placeholder'",
+    "test": "npm run test --workspaces --if-present && npm run test:auth",
+    "test:auth": "vitest run modules/core/authentication/tests --exclude 'apps/backend/dist/**'",
+    "test:unit": "npm run test:auth",
     "test:integration": "echo 'Integration tests placeholder'",
     "test:e2e": "echo 'E2E tests placeholder'",
     "dev": "echo 'Dev placeholder'",
@@ -29,6 +30,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@types/node": "^20.11.24",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^4.1.11"
   }
 }
