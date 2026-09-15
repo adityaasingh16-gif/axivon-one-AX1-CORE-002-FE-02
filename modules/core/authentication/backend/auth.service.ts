@@ -1,33 +1,24 @@
-import type { UUID, AuthTokens, LoginCredentials } from '@axivon/types';
+/**
+ * Compatibility entrypoint for the original CORE-001 skeleton.
+ *
+ * The real implementation is now split by responsibility under this backend
+ * module. New callers should import from `./index.js` or from the explicit
+ * service/repository contracts rather than using this legacy filename.
+ */
 
-export interface UserRecord {
-  id: UUID;
-  email: string;
-  passwordHash: string;
-  firstName: string;
-  lastName: string;
-  status: string;
-}
+export {
+  AuthenticationService,
+  newSessionId,
+  systemClock,
+  type AuthServiceDependencies,
+  type Clock,
+  type ForgotPasswordResult,
+  type RegisterResult,
+  type ResetPasswordResult,
+  type RevokeAllSessionsResult,
+  type RevokeSessionResult,
+  type SessionVerification,
+  type VerifyEmailResult,
+} from './services/auth.service.js';
 
-export class AuthenticationBackendService {
-  public static async authenticate(credentials: LoginCredentials): Promise<AuthTokens> {
-    if (!credentials.email || !credentials.password) {
-      throw new Error('Email and password required');
-    }
-    return {
-      accessToken: 'sample_jwt_access_token',
-      refreshToken: 'sample_jwt_refresh_token',
-      expiresIn: 3600,
-    };
-  }
-
-  public static async verifySessionToken(token: string): Promise<{ userId: UUID; email: string }> {
-    if (!token) {
-      throw new Error('Token required');
-    }
-    return {
-      userId: '00000000-0000-0000-0000-000000000001',
-      email: 'admin@axivon.com',
-    };
-  }
-}
+export type { AuthUserRecord as UserRecord } from './contracts/index.js';

@@ -3,6 +3,7 @@
 ## Standards
 - RESTful JSON API format with standardized response envelopes.
 - All endpoints prefixed with `/api/v1/`.
+- Authentication contract: [`authentication.md`](./authentication.md).
 
 ### Success Response Envelope
 ```json
