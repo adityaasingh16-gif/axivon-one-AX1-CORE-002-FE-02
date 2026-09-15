@@ -1,0 +1,6 @@
+{
+  "name": "@axivon/core-search",
+  "version": "1.0.0-phase1.0",
+  "description": "Search Module for AXIVON ONE (CORE-011)",
+  "main": "./shared/index.ts"
+}

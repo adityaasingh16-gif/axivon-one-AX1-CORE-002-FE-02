@@ -1,0 +1,6 @@
+{
+  "name": "@axivon/core-notifications",
+  "version": "1.0.0-phase1.0",
+  "description": "Notifications Module for AXIVON ONE (CORE-008)",
+  "main": "./shared/index.ts"
+}

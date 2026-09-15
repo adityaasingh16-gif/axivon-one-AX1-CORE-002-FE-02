@@ -1,0 +1,19 @@
+{
+  "name": "@axivon/backend",
+  "version": "1.0.0-phase1.0",
+  "description": "AXIVON ONE Backend Application",
+  "private": true,
+  "scripts": {
+    "dev": "node --enable-source-maps dist/apps/backend/src/server.js",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --root ../.. modules/core/authentication/tests --exclude 'apps/backend/dist/**'",
+    "test:watch": "vitest --root ../.. modules/core/authentication/tests --exclude 'apps/backend/dist/**'"
+  },
+  "dependencies": {
+    "@axivon/types": "*",
+    "@axivon/config": "*",
+    "@axivon/validation": "*",
+    "@axivon/utils": "*"
+  }
+}

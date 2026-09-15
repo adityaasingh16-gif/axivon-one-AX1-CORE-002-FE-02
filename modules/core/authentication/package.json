@@ -1,0 +1,8 @@
+{
+  "name": "@axivon/core-authentication",
+  "version": "1.0.0-phase1.0",
+  "description": "Authentication Module for AXIVON ONE (CORE-001)",
+  "private": true,
+  "main": "./backend/index.ts",
+  "types": "./backend/index.ts"
+}

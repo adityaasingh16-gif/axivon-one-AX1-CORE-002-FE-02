@@ -1,0 +1,6 @@
+{
+  "name": "@axivon/core-permission-management",
+  "version": "1.0.0-phase1.0",
+  "description": "Permission Management Module for AXIVON ONE (CORE-004)",
+  "main": "./shared/index.ts"
+}

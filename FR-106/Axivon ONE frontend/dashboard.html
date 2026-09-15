@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — AXIVON ONE</title>
+<link rel="stylesheet" href="assets\css\style.css">
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <div class="spin" aria-hidden="true"></div>
+  <p>Checking your session\u2026</p>
+</div>
+
+<div class="app-shell" id="appShell" style="display:none;">
+  <aside class="app-sidebar">
+    <a href="index.html" class="brand">
+      <span class="brand-logo-wrap">
+        <img class="brand-logo" src="assets/images/axivon-logo.png" alt="Axivon Technologies" width="786" height="727">
+      </span>
+    </a>
+
+    <nav class="side-nav" aria-label="Dashboard">
+      <p class="side-nav-label">Workspace</p>
+      <a href="dashboard.html" class="is-active">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.6"/></svg>
+        Overview
+      </a>
+      <a href="user-management.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3.3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.7-3.4 3.2-5.3 5.5-5.3s4.8 1.9 5.5 5.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="17" cy="8.5" r="2.6" stroke="currentColor" stroke-width="1.5"/><path d="M15.3 13.3c2 .3 3.7 1.9 4.2 4.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Users
+      </a>
+      <a href="sessions.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Sessions
+      </a>
+      <a href="security.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9-4-1-7-4.4-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Security
+      </a>
+      <a href="settings.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H4a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3H10.5a1.7 1.7 0 0 0 1-1.6V4a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9V10.5a1.7 1.7 0 0 0 1.6 1H20a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.6 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="avatar" id="sideAvatar">--</div>
+        <div class="who">
+          <strong id="sideName">&nbsp;</strong>
+          <span id="sideEmail">&nbsp;</span>
+        </div>
+      </div>
+      <button type="button" class="btn btn-on-ink btn-block btn-sm" id="logoutBtn">
+        <span class="spinner"></span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Log out
+      </button>
+    </div>
+  </aside>
+
+  <main class="app-main">
+    <div class="app-topbar">
+      <div>
+        <h1 id="welcomeHeading">Welcome back</h1>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">Account status</div>
+        <div class="value ok" id="statStatus">Verified</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Session type</div>
+        <div class="value" id="statSessionType">Standard</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Member since</div>
+        <div class="value" id="statMemberSince">&mdash;</div>
+      </div>
+    </div>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Profile</h2>
+          <p>The details tied to this account.</p>
+        </div>
+        <span class="badge badge-success" id="verifiedBadge">Verified</span>
+      </div>
+      <div class="kv-list">
+        <div class="kv-row"><span class="k">Full name</span><span class="v" id="kvName">&mdash;</span></div>
+        <div class="kv-row"><span class="k">Email</span><span class="v" id="kvEmail">&mdash;</span></div>
+        <div class="kv-row"><span class="k">Account ID</span><span class="v mono" id="kvId">&mdash;</span></div>
+        <div class="kv-row"><span class="k">Created</span><span class="v" id="kvCreated">&mdash;</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Current session</h2>
+        </div>
+        <span class="badge badge-info" id="rememberedBadge">Standard</span>
+      </div>
+      <div class="kv-list">
+        <div class="kv-row"><span class="k">Session token</span><span class="v mono" id="kvToken">&mdash;</span></div>
+        <div class="kv-row"><span class="k">Signed in</span><span class="v" id="kvSignedIn">&mdash;</span></div>
+        <div class="kv-row"><span class="k">Expires</span><span class="v" id="kvExpires">&mdash;</span></div>
+        <div class="kv-row"><span class="k">Device</span><span class="v" id="kvDevice">&mdash;</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>User Management</h2>
+          <p>Manage profiles, list, details, status and membership.</p>
+        </div>
+      </div>
+      <div class="panel-actions">
+        <a href="user-management.html" class="btn btn-primary btn-sm">User management</a>
+        <a href="user-management.html" class="btn btn-ghost btn-sm">Create user</a>
+        <a href="user-details.html" class="btn btn-ghost btn-sm">Profiles &amp; details</a>
+      </div>
+    </section>
+
+    <section class="panel danger-panel">
+      <div class="panel-head">
+        <div>
+          <h2>End this session</h2>
+          <p>Logs you out of AXIVON ONE</p>
+        </div>
+      </div>
+      <button type="button" class="btn btn-danger" id="logoutBtn2">
+        <span class="spinner"></span>Log out of this device
+      </button>
+    </section>
+  </main>
+</div>
+
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var Auth = window.AxivonAuth, UI = window.AxivonUI;
+
+  var session = Auth.requireAuth();
+  if (!session) return; // requireAuth already redirected
+
+  var user = Auth.currentUser();
+  if (!user) {
+    Auth.clearSession();
+    location.replace('login.html');
+    return;
+  }
+
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('appShell').style.display = 'grid';
+
+  var firstName = user.fullName.split(' ')[0] || user.fullName;
+  document.getElementById('welcomeHeading').textContent = 'Welcome back, ' + firstName;
+  document.getElementById('sideAvatar').textContent = Auth.initials(user.fullName);
+  document.getElementById('sideName').textContent = user.fullName;
+  document.getElementById('sideEmail').textContent = user.email;
+
+  document.getElementById('statStatus').textContent = user.verified ? 'Verified' : 'Unverified';
+  document.getElementById('statSessionType').textContent = session.remember ? 'Remembered' : 'Standard';
+  document.getElementById('statMemberSince').textContent = new Date(user.createdAt).toLocaleDateString(undefined, { month: 'short', year: 'numeric' });
+
+  document.getElementById('kvName').textContent = user.fullName;
+  document.getElementById('kvEmail').textContent = user.email;
+  document.getElementById('kvId').textContent = user.id;
+  document.getElementById('kvCreated').textContent = Auth.formatDateTime(user.createdAt);
+
+  document.getElementById('kvToken').textContent = session.token.slice(0, 10) + '\u2026' + session.token.slice(-4);
+  document.getElementById('kvSignedIn').textContent = Auth.formatDateTime(session.createdAt);
+  document.getElementById('kvExpires').textContent = Auth.formatDateTime(session.expiresAt);
+  document.getElementById('kvDevice').textContent = session.userAgent.length > 60 ? session.userAgent.slice(0, 60) + '\u2026' : session.userAgent;
+
+  var rememberedBadge = document.getElementById('rememberedBadge');
+  rememberedBadge.textContent = session.remember ? 'Remembered \u00B7 30 days' : 'Standard \u00B7 1 hour';
+  rememberedBadge.className = 'badge ' + (session.remember ? 'badge-neutral' : 'badge-info');
+
+  if (!user.verified) {
+    var vb = document.getElementById('verifiedBadge');
+    vb.textContent = 'Unverified';
+    vb.className = 'badge badge-neutral';
+  }
+
+  var timerEl = document.getElementById('sessionTimer');
+  function tick(){
+    var remaining = session.expiresAt - Date.now();
+    if (remaining <= 0) {
+      Auth.clearSession();
+      location.href = 'login.html?expired=1';
+      return;
+    }
+    var totalSec = Math.floor(remaining / 1000);
+    var h = Math.floor(totalSec / 3600);
+    var m = Math.floor((totalSec % 3600) / 60);
+    var s = totalSec % 60;
+    var label = h > 0
+      ? h + 'h ' + String(m).padStart(2, '0') + 'm'
+      : String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    if (timerEl) timerEl.textContent = label;
+  }
+  tick();
+  var interval = setInterval(tick, 1000);
+
+  function doLogout(btn){
+    UI.setLoading(btn, true);
+    setTimeout(function(){
+      clearInterval(interval);
+      Auth.logout();
+      location.href = 'login.html?loggedout=1';
+    }, 500);
+  }
+  document.getElementById('logoutBtn').addEventListener('click', function(){ doLogout(this); });
+  document.getElementById('logoutBtn2').addEventListener('click', function(){ doLogout(this); });
+})();
+</script>
+</body>
+</html>
