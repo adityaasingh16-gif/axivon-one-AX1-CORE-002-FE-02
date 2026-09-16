@@ -1,13 +1,28 @@
 {
-  "name": "auth-suite-app",
+  "name": "axivon-one",
+  "version": "1.0.0-phase1.0",
+  "description": "AXIVON ONE — Modular & Reusable Software Platform by Axivon Technologies",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "modules/core/*"
+  ],
   "scripts": {
     "dev": "vite",
+    "dev:backend": "npm run dev --workspace @axivon/backend",
     "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
+    "build:backend": "npm run build --workspace @axivon/backend",
+    "lint": "oxlint && npm run lint --workspaces --if-present",
+    "preview": "vite preview",
+    "test": "npm run test --workspaces --if-present && npm run test:auth && npm run test:users",
+    "test:auth": "vitest run modules/core/authentication/tests --exclude 'apps/frontend/**' --exclude 'apps/backend/dist/**'",
+    "test:users": "vitest run modules/core/user-management/tests --exclude 'apps/frontend/**' --exclude 'apps/backend/dist/**'",
+    "test:unit": "npm run test:auth && npm run test:users",
+    "test:integration": "echo 'Integration tests placeholder'",
+    "test:e2e": "echo 'E2E tests placeholder'",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -17,11 +32,24 @@
     "react-router-dom": "^7.18.3",
     "tailwindcss": "^4.3.3"
   },
+  "keywords": [
+    "axivon",
+    "axivon-one",
+    "modular-platform",
+    "reusable-architecture",
+    "typescript"
+  ],
+  "author": "Axivon Technologies",
+  "license": "UNLICENSED",
   "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/pg": "^8.11.10",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.1.0",
     "oxlint": "^1.79.0",
-    "vite": "^8.2.2"
+    "typescript": "^5.3.3",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
   }
 }

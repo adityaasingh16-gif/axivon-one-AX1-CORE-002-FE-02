@@ -11,7 +11,7 @@
 | **Priority** | `P0` |
 | **Status** | `Todo` |
 | **Assigned To** | Unassigned |
-| **Repository Area** | `apps/backend/src/modules/core/user-management/` |
+| **Repository Area** | `modules/core/user-management/` |
 
 ---
 
@@ -24,5 +24,5 @@ Backend deliverable covering user profiles, list/detail, create/edit, status and
 ## Acceptance Criteria & Guidelines
 - [ ] Task implementation strictly follows the architecture and scope specified above.
 - [ ] Developed on branch: `feature/AX1-CORE-002-BE-01` (Task-based branch rule).
-- [ ] Accompanied by relevant tests, documentation, or specifications in `apps/backend/src/modules/core/user-management/`.
+- [ ] Accompanied by relevant tests, documentation, or specifications in `modules/core/user-management/`.
 - [ ] Pull Request title follows: `[Backend] AX1-CORE-002-BE-01 — [Short Description]`.

@@ -76,6 +76,7 @@ export {
   createInMemoryTokenRepository,
   createInMemoryUserRepository,
 } from './repositories/in-memory.repository.js';
+export { createPostgresAuthRepositories } from './repositories/postgres.repository.js';
 
 // Security utilities ------------------------------------------------------
 export type { PasswordHasher, ScryptParams } from './utils/password.hasher.js';
