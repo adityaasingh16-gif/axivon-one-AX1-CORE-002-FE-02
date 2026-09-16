@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "auth-suite-app",
   "private": true,
   "version": "0.0.0",
@@ -24,40 +23,5 @@
     "@vitejs/plugin-react": "^6.1.0",
     "oxlint": "^1.79.0",
     "vite": "^8.2.2"
-=======
-  "name": "axivon-one",
-  "version": "1.0.0-phase1.0",
-  "description": "AXIVON ONE — Modular & Reusable Software Platform by Axivon Technologies",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "modules/core/*"
-  ],
-  "scripts": {
-    "build": "npm run build --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present && npm run test:auth",
-    "test:auth": "vitest run modules/core/authentication/tests --exclude 'apps/backend/dist/**'",
-    "test:unit": "npm run test:auth",
-    "test:integration": "echo 'Integration tests placeholder'",
-    "test:e2e": "echo 'E2E tests placeholder'",
-    "dev": "echo 'Dev placeholder'",
-    "typecheck": "tsc --noEmit"
-  },
-  "keywords": [
-    "axivon",
-    "axivon-one",
-    "modular-platform",
-    "reusable-architecture",
-    "typescript"
-  ],
-  "author": "Axivon Technologies",
-  "license": "UNLICENSED",
-  "devDependencies": {
-    "@types/node": "^20.11.24",
-    "typescript": "^5.3.3",
-    "vitest": "^4.1.11"
->>>>>>> 499d9232701b04086038fc0a32b4a10126fd0c45
   }
 }
