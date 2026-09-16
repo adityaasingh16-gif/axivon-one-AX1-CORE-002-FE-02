@@ -2,6 +2,7 @@
 
 import { createServer } from 'node:http';
 import { createApp } from './app.js';
+import type { AuthRouter } from '../../../modules/core/authentication/backend/index.js';
 import { createNodeRequestHandler } from '../../../modules/core/authentication/backend/index.js';
 
 const parsePort = (raw: string): number => {
@@ -19,9 +20,22 @@ for (const warning of app.modules.authentication.warnings) {
   console.warn(`[authentication] ${warning}`);
 }
 
+const router: AuthRouter = {
+  routes: () => [
+    ...app.modules.authentication.router.routes(),
+    ...app.modules.userManagement.router.routes(),
+  ],
+  handle: async (request) => {
+    if (request.path.startsWith('/api/v1/users')) {
+      return app.modules.userManagement.router.handle(request);
+    }
+    return app.modules.authentication.router.handle(request);
+  },
+};
+
 const server = createServer(
   createNodeRequestHandler({
-    router: app.modules.authentication.router,
+    router,
     logger: (entry) => console.error(JSON.stringify(entry)),
   }),
 );
