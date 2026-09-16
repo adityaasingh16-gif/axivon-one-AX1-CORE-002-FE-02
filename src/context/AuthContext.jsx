@@ -208,6 +208,32 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateUserProfile = async ({ name, email }) => {
+    if (!user) throw new Error('You must be signed in to update your profile.');
+    try {
+      const updatedUser = await mockAuthApi.updateProfile({ userId: user.id, name, email });
+      setUser(updatedUser);
+      showToast('Profile details updated successfully.', 'success', 'Profile Updated');
+      return updatedUser;
+    } catch (err) {
+      showToast(err.message, 'error', 'Profile Update Failed');
+      throw err;
+    }
+  };
+
+  const updateUserSecurity = async ({ mfaEnabled }) => {
+    if (!user) throw new Error('You must be signed in to update security settings.');
+    try {
+      const updatedUser = await mockAuthApi.updateSecurity({ userId: user.id, mfaEnabled });
+      setUser(updatedUser);
+      showToast(mfaEnabled ? 'Two-factor authentication enabled.' : 'Two-factor authentication disabled.', 'success', 'Security Updated');
+      return updatedUser;
+    } catch (err) {
+      showToast(err.message, 'error', 'Security Update Failed');
+      throw err;
+    }
+  };
+
   const handleLogout = async (reason) => {
     try {
       if (token) {
@@ -272,6 +298,8 @@ export const AuthProvider = ({ children }) => {
     resendCode: handleResendCode,
     forgotPassword: handleForgotPassword,
     resetPassword: handleResetPassword,
+    updateUserProfile,
+    updateUserSecurity,
     logout: handleLogout,
     checkAuth,
     devToolsAction
