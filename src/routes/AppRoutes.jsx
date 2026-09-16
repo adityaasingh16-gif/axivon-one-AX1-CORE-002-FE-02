@@ -13,6 +13,7 @@ import { OrganizationListView } from '../views/OrganizationListView';
 import { OrganizationSetupView } from '../views/OrganizationSetupView';
 import { OrganizationDetailsView } from '../views/OrganizationDetailsView';
 import { OrganizationEditView } from '../views/OrganizationEditView';
+import { SettingsView } from '../views/SettingsView';
 
 // Layout & Route Guards
 import { SidebarLayout } from '../components/layout/SidebarLayout';
@@ -90,6 +91,18 @@ export const AppRoutes = () => {
           </ProtectedView>
         }
       />
+      <Route path="/settings" element={<Navigate to="/settings/profile" replace />} />
+      {['profile', 'organization', 'security', 'system'].map(section => (
+        <Route
+          key={section}
+          path={`/settings/${section}`}
+          element={
+            <ProtectedView>
+              <SettingsView />
+            </ProtectedView>
+          }
+        />
+      ))}
 
       {/* Protected Organization Routes */}
       <Route

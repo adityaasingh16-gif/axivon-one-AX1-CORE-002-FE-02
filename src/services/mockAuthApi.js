@@ -294,6 +294,33 @@ export const mockAuthApi = {
     };
   },
 
+  // --- PROFILE / SECURITY SETTINGS ---
+  async updateProfile({ userId, name, email }) {
+    await delay();
+    const users = getStored(STORAGE_KEYS.USERS);
+    const index = users.findIndex(u => u.id === userId);
+    if (index === -1) throw new Error('User account not found.');
+    const normalizedEmail = email.trim().toLowerCase();
+    if (users.some((u, i) => i !== index && u.email.toLowerCase() === normalizedEmail)) {
+      throw new Error('That email address is already in use.');
+    }
+    users[index] = { ...users[index], name: name.trim(), email: normalizedEmail };
+    setStored(STORAGE_KEYS.USERS, users);
+    const { passwordHash, ...userClean } = users[index];
+    return userClean;
+  },
+
+  async updateSecurity({ userId, mfaEnabled }) {
+    await delay();
+    const users = getStored(STORAGE_KEYS.USERS);
+    const index = users.findIndex(u => u.id === userId);
+    if (index === -1) throw new Error('User account not found.');
+    users[index] = { ...users[index], mfaEnabled: !!mfaEnabled };
+    setStored(STORAGE_KEYS.USERS, users);
+    const { passwordHash, ...userClean } = users[index];
+    return userClean;
+  },
+
   // --- LOGOUT ---
   async logout({ token }) {
     await delay(200);

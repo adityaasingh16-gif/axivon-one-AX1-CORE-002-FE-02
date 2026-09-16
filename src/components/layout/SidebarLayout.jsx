@@ -30,6 +30,7 @@ export const SidebarLayout = ({ children }) => {
     if (path.startsWith('/organizations/')) return [{ label: 'Workspaces', path: '/organizations' }, { label: activeOrg?.name || 'Details' }];
     if (path === '/sessions') return [{ label: 'Account', path: '/dashboard' }, { label: 'Active Sessions' }];
     if (path === '/verify') return [{ label: 'Account', path: '/dashboard' }, { label: 'Email Verification' }];
+    if (path.startsWith('/settings')) return [{ label: 'Account', path: '/dashboard' }, { label: 'Settings' }];
     return [{ label: 'App', path: '/dashboard' }];
   };
 
@@ -222,6 +223,21 @@ export const SidebarLayout = ({ children }) => {
                 Security & Account
               </span>
               <div className="space-y-0.5">
+                <NavLink
+                  to="/settings/profile"
+                  onClick={() => setIsMobileSidebarOpen(false)}
+                  className={({ isActive }) =>
+                    `flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-colors ${
+                      isActive || location.pathname.startsWith('/settings')
+                        ? 'bg-indigo-600 text-white font-semibold shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    }`
+                  }
+                >
+                  <Settings className="w-4 h-4" />
+                  <span>Account Settings</span>
+                </NavLink>
+
                 <NavLink
                   to="/sessions"
                   onClick={() => setIsMobileSidebarOpen(false)}
