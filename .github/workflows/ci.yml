@@ -21,7 +21,13 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci --include=optional
+
+      # Vite 8 uses Rolldown native bindings. The lockfile was generated on
+      # Windows, so npm ci can omit the Linux x64 optional binding on CI.
+      # Install the exact Linux binding explicitly without changing the lockfile.
+      - name: Restore Linux Rolldown Binding
+        run: npm install --no-save --package-lock=false @rolldown/binding-linux-x64-gnu@1.2.4
 
       - name: Typecheck
         run: npm run typecheck
