@@ -21,7 +21,12 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci --include=optional
+
+      # Restore optional packages that can be omitted when the lockfile was
+      # generated on another platform. This avoids mutating package-lock.json.
+      - name: Restore Optional Native Dependencies
+        run: npm install --include=optional --no-package-lock --ignore-scripts
 
       - name: Typecheck
         run: npm run typecheck
