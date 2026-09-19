@@ -23,6 +23,12 @@ jobs:
       - name: Install Dependencies
         run: npm ci --include=optional
 
+      # npm's workspace dependency resolution can skip the Linux optional
+      # Rolldown binding from a cross-platform lockfile. Install it outside
+      # workspace processing so Vitest/Vite can load the native binding.
+      - name: Restore Linux Rolldown Binding
+        run: npm install --no-save --package-lock=false --workspaces=false @rolldown/binding-linux-x64-gnu@1.2.4
+
       - name: Typecheck
         run: npm run typecheck
 
