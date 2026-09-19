@@ -21,13 +21,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci --include=optional
-
-      # The lockfile was generated on Windows and does not contain all
-      # Linux optional Rolldown packages. Re-resolve optional dependencies
-      # on the Linux runner without changing the committed lockfile.
-      - name: Repair Platform Optional Dependencies
-        run: npm install --include=optional --package-lock=false --force
+        run: npm install
 
       - name: Typecheck
         run: npm run typecheck
