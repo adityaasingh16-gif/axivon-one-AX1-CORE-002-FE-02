@@ -1,0 +1,48 @@
+.notifications {
+  width: min(100%, 960px);
+  margin-inline: auto;
+  padding: 1rem;
+}
+
+.notifications__list {
+  display: grid;
+  gap: .75rem;
+  padding: 0;
+  margin: 1rem 0;
+  list-style: none;
+}
+
+.notifications__item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #d9dde5;
+  border-radius: .75rem;
+  background: #fff;
+}
+
+.notifications__item--unread {
+  border-inline-start: .25rem solid currentColor;
+}
+
+.notifications__title { margin: 0 0 .35rem; }
+.notifications__actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.notifications button { min-height: 2.5rem; padding: .5rem .8rem; cursor: pointer; }
+.notifications button:focus-visible,
+.notifications input:focus-visible { outline: 3px solid currentColor; outline-offset: 2px; }
+.notifications__empty { padding: 2rem; text-align: center; }
+.notifications__error { padding: .75rem; border: 1px solid currentColor; border-radius: .5rem; }
+.notifications__preferences { display: grid; gap: .9rem; }
+.notifications__preferences fieldset { display: grid; gap: .6rem; }
+
+@media (max-width: 640px) {
+  .notifications__item { flex-direction: column; }
+  .notifications__actions { width: 100%; }
+  .notifications__actions button { flex: 1 1 10rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notifications *, .notifications *::before, .notifications *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
