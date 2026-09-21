@@ -4,7 +4,12 @@ import type {
   NotificationPreferences,
 } from "../../../../modules/core/notifications/shared/contracts";
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "") ?? "";
+// Use a relative API path so the shared root TypeScript config can typecheck
+// this frontend service without relying on Vite-only import.meta.env types.
+const runtimeConfig = globalThis as typeof globalThis & {
+  __AXIVON_API_BASE_URL__?: string;
+};
+const API_BASE_URL = runtimeConfig.__AXIVON_API_BASE_URL__?.replace(/\/$/, "") ?? "";
 
 export class NotificationApiError extends Error {
   status: number;
