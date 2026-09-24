@@ -1,5 +1,6 @@
 export type AuditSeverity = 'info' | 'warning' | 'critical';
 export type AuditResult = 'success' | 'failure';
+export interface AuditEventInput { action: string; resourceType: string; resourceId: string; severity: AuditSeverity; details?: string; }
 
 export interface AuditEvent {
   id: string;
