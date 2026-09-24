@@ -38,3 +38,7 @@
 .audit-access { max-width: 620px; margin: 50px auto; }
 .audit-access h1 { margin-top: 0; }
 @media (max-width: 820px) { .audit-header, .audit-form-heading, .audit-toolbar { align-items: stretch; flex-direction: column; } .audit-form-grid { grid-template-columns: 1fr; } .audit-details { grid-column: auto; } .audit-filters { width: 100%; grid-template-columns: 1fr; } .audit-row { grid-template-columns: 1fr; gap: 8px; } .audit-event-meta { text-align: left; } }
+
+.audit-pagination { max-width: 1180px; margin: 12px auto 48px; padding: 0 20px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; font-size: 13px; }
+.audit-pagination button { border: 1px solid #ccd4e0; border-radius: 9px; padding: 9px 13px; background: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+.audit-pagination button:disabled { opacity: .5; cursor: not-allowed; }
