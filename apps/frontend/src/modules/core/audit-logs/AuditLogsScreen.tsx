@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import type { AuditEvent, AuditLogApi, AuditLogFilters, AuditSeverity } from '../../../../../../modules/core/audit-logs/shared/contracts';
+import type { AuditEvent, AuditLogApi, AuditSeverity } from '../../../../../../modules/core/audit-logs/shared/contracts';
 import { useAuditLogs } from './useAuditLogs';
 import './audit-logs.css';
 
@@ -81,8 +81,6 @@ export function AuditLogsScreen({ events, loading = false, error = null, canView
 export function AuditLogsApiScreen({ api, canViewLogs = true }: AuditLogsApiScreenProps) {
   const [filters, setFilters] = useState<AuditLogFilters>({ page: 1, pageSize: 20 });
   const { data, loading, error, reload } = useAuditLogs(api, filters);
-
-  const updateFilter = (patch: AuditLogFilters) => setFilters((current) => ({ ...current, ...patch, page: 1 }));
 
   if (!canViewLogs) return <main className="audit-logs"><section className="audit-access" role="alert"><h1>Audit Logs</h1><h2>Access restricted</h2><p>You do not have permission to view audit log records.</p></section></main>;
 
