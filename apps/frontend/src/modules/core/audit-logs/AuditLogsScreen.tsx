@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import type { AuditEvent, AuditLogApi, AuditSeverity } from '../../../../../../modules/core/audit-logs/shared/contracts';
+import type { AuditEvent, AuditLogApi, AuditLogFilters, AuditSeverity } from '../../../../../../modules/core/audit-logs/shared/contracts';
 import { useAuditLogs } from './useAuditLogs';
 import './audit-logs.css';
 
