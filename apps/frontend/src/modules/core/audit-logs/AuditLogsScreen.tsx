@@ -1,9 +1,19 @@
 import { useMemo, useState } from 'react';
-import type { AuditEvent, AuditLogApi, AuditLogFilters, AuditSeverity } from '../../../../../../modules/core/audit-logs/shared/contracts';
+import type { AuditEvent, AuditEventInput, AuditLogApi, AuditLogFilters, AuditSeverity } from '../../../../../../modules/core/audit-logs/shared/contracts';
 import { useAuditLogs } from './useAuditLogs';
 import './audit-logs.css';
 
 type SeverityFilter = AuditSeverity | 'all';
+
+export function AuditEventForm({ onCapture, disabled = false }: { onCapture: (event: AuditEventInput) => void; disabled?: boolean }) {
+  const [action, setAction] = useState('');
+  const [resourceType, setResourceType] = useState('');
+  const [resourceId, setResourceId] = useState('');
+  const [severity, setSeverity] = useState<AuditSeverity>('info');
+  const [details, setDetails] = useState('');
+  const submit = (event: React.FormEvent) => { event.preventDefault(); if (!action.trim() || !resourceType.trim() || !resourceId.trim()) return; onCapture({ action: action.trim(), resourceType: resourceType.trim(), resourceId: resourceId.trim(), severity, details: details.trim() || undefined }); setAction(''); setResourceType(''); setResourceId(''); setDetails(''); setSeverity('info'); };
+  return <form className="audit-form" onSubmit={submit} aria-label="Audit event capture"><strong>Audit event capture</strong><p>Reusable event-input component for callers that have an approved write-side workflow.</p><div className="audit-form-grid"><label>Action<input value={action} onChange={(e) => setAction(e.target.value)} required disabled={disabled} /></label><label>Resource type<input value={resourceType} onChange={(e) => setResourceType(e.target.value)} required disabled={disabled} /></label><label>Resource ID<input value={resourceId} onChange={(e) => setResourceId(e.target.value)} required disabled={disabled} /></label><label>Severity<select value={severity} onChange={(e) => setSeverity(e.target.value as AuditSeverity)} disabled={disabled}><option value="info">Info</option><option value="warning">Warning</option><option value="critical">Critical</option></select></label><label className="audit-details">Details<textarea value={details} onChange={(e) => setDetails(e.target.value)} disabled={disabled} rows={3} /></label></div><button type="submit" disabled={disabled || !action.trim() || !resourceType.trim() || !resourceId.trim()}>Capture event</button></form>;
+}
 
 export interface AuditLogsScreenProps {
   events: AuditEvent[];
