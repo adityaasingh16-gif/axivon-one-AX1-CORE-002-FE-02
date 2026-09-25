@@ -6,9 +6,15 @@
 .file-panel { background: #fff; border: 1px solid #e4e7ec; border-radius: 14px; padding: 16px; margin-bottom: 16px; }
 .file-panel button, .file-toolbar button, .file-actions button, .file-error button, .file-dialog button { border: 1px solid #d0d5dd; border-radius: 8px; padding: 8px 11px; background: #fff; color: #344054; cursor: pointer; }
 .file-panel > button { background: #172033; color: #fff; border-color: #172033; font-weight: 700; }
-.file-toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.file-toolbar { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.file-toolbar label { display: grid; gap: 5px; font-size: 12px; font-weight: 700; color: #344054; }
+.file-search { flex: 1 1 280px; }
+.view-controls { display: flex; gap: 8px; }
+.file-management button:focus-visible, .file-management input:focus-visible, .file-management select:focus-visible { outline: 3px solid #84adff; outline-offset: 2px; }
+.file-management button:disabled { opacity: .55; cursor: not-allowed; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .file-toolbar input, .file-toolbar select, .file-dialog input { border: 1px solid #d0d5dd; border-radius: 10px; padding: 10px 12px; background: #fff; color: #344054; }
-.file-toolbar input { flex: 1 1 280px; min-width: 220px; }
+.file-toolbar input { width: 100%; box-sizing: border-box; }
 .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
 .file-card { background: #fff; border: 1px solid #e4e7ec; border-radius: 14px; padding: 16px; min-width: 0; }
 .file-card h3 { margin: 12px 0 4px; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -25,4 +31,4 @@
 .file-dialog header { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .file-dialog input { width: 100%; box-sizing: border-box; margin-bottom: 12px; }
 .file-preview-image { display: block; max-width: 100%; max-height: 520px; margin: 18px auto 0; object-fit: contain; }
-@media (max-width: 640px) { .file-management { padding: 16px; } .file-toolbar input { min-width: 100%; } .file-panel { overflow-x: auto; } .file-panel table { min-width: 680px; } }
+@media (max-width: 640px) { .file-management { padding: 16px; } .file-toolbar > label, .file-search { width: 100%; flex-basis: 100%; } .view-controls { width: 100%; } .view-controls button { flex: 1; } .file-actions button { flex: 1 1 auto; } .file-panel { overflow-x: auto; } .file-panel table { min-width: 680px; } .file-dialog { padding: 16px; } }
