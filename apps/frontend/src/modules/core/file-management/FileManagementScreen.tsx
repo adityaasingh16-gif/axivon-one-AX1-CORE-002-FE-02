@@ -138,7 +138,6 @@ export function FileManagementScreen({ files, api, loading = false, error = null
     try {
       const url = await api.preview(file);
       if (requestId !== previewRequestRef.current) return;
-      if (selected?.id !== file.id && selected !== null) return;
       if (url && url.startsWith('blob:')) previewObjectUrlRef.current = url;
       setPreviewUrl(url);
     } catch (cause) {
