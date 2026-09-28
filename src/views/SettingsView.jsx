@@ -94,6 +94,7 @@ export const SettingsView = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [dirty, setDirty] = useState(false);
+  const [sectionQuery, setSectionQuery] = useState('');
 
   useEffect(() => setProfile({ name: user?.name || '', email: user?.email || '' }), [user]);
   useEffect(() => setSecurity(readStorage(SECURITY_KEY, {
@@ -108,13 +109,40 @@ export const SettingsView = () => {
       billingEmail: activeOrg.billingEmail || '', mfaRequired: Boolean(activeOrg.mfaRequired)
     });
   }, [activeOrg]);
-  useEffect(() => { setErrors({}); setSaved(false); setDirty(false); }, [activeSection]);
+  useEffect(() => { setErrors({}); setSaved(false); setDirty(false); setSectionQuery(''); }, [activeSection]);
+
+  const filteredSections = useMemo(() => {
+    const query = sectionQuery.trim().toLowerCase();
+    if (!query) return sections;
+    return sections.filter((section) => `${section.label} ${section.description}`.toLowerCase().includes(query));
+  }, [sectionQuery]);
 
   const updateValue = (setter, values, field, value) => {
     setter({ ...values, [field]: value });
     setDirty(true);
     setSaved(false);
     setErrors((current) => ({ ...current, [field]: undefined, form: undefined }));
+  };
+
+  const resetActiveSection = () => {
+    if (activeSection === 'profile') {
+      setProfile({ name: user?.name || '', email: user?.email || '' });
+    }
+    if (activeSection === 'organization') {
+      setOrganization({
+        name: activeOrg?.name || '', slug: activeOrg?.slug || '', logoUrl: activeOrg?.logoUrl || '',
+        primaryDomain: activeOrg?.primaryDomain || '', industry: activeOrg?.industry || '',
+        companySize: activeOrg?.companySize || '', supportEmail: activeOrg?.supportEmail || '',
+        billingEmail: activeOrg?.billingEmail || '', mfaRequired: Boolean(activeOrg?.mfaRequired)
+      });
+    }
+    if (activeSection === 'security') {
+      setSecurity(readStorage(SECURITY_KEY, { mfaEnabled: Boolean(user?.mfaEnabled), loginAlerts: true, sessionTimeout: 30 }));
+    }
+    if (activeSection === 'system') setSystem(readStorage(SETTINGS_KEY, DEFAULT_SYSTEM));
+    setErrors({});
+    setSaved(false);
+    setDirty(false);
   };
 
   const handleSave = async (event) => {
@@ -203,7 +231,22 @@ export const SettingsView = () => {
       <div className="mb-6"><h1 className="text-2xl font-bold tracking-tight">Settings</h1><p className="text-sm text-slate-500 mt-1">Manage your profile, organization, security and system preferences.</p></div>
       <div className="grid grid-cols-1 lg:grid-cols-[250px_minmax(0,1fr)] gap-5">
         <aside className="bg-white border border-slate-200 rounded-2xl p-2 h-fit shadow-xs" aria-label="Settings sections">
-          {sections.map((section) => { const Icon = section.icon; return <NavLink key={section.id} to={`/settings/${section.id}`} className={({ isActive }) => `flex items-center gap-3 px-3 py-3 rounded-xl transition-colors ${isActive ? 'bg-indigo-50 text-indigo-700' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}><Icon className="w-4 h-4 shrink-0" /><span className="min-w-0"><span className="block text-sm font-semibold">{section.label}</span><span className="block text-[10px] mt-0.5 text-slate-400 truncate">{section.description}</span></span></NavLink>; })}
+          <label className="block px-2 pb-2">
+            <span className="sr-only">Filter settings sections</span>
+            <input
+              value={sectionQuery}
+              onChange={(event) => setSectionQuery(event.target.value)}
+              placeholder="Filter settings…"
+              aria-label="Filter settings sections"
+              className="w-full decent-input text-sm"
+            />
+          </label>
+          <div className="space-y-1">
+            {filteredSections.length ? filteredSections.map((section) => {
+              const Icon = section.icon;
+              return <NavLink key={section.id} to={`/settings/${section.id}`} className={({ isActive }) => `flex items-center gap-3 px-3 py-3 rounded-xl transition-colors ${isActive ? 'bg-indigo-50 text-indigo-700' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}><Icon className="w-4 h-4 shrink-0" /><span className="min-w-0"><span className="block text-sm font-semibold">{section.label}</span><span className="block text-[10px] mt-0.5 text-slate-400 truncate">{section.description}</span></span></NavLink>;
+            }) : <p className="px-3 py-4 text-xs text-slate-400 text-center">No settings sections found.</p>}
+          </div>
         </aside>
         <form onSubmit={handleSave} noValidate className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-7 shadow-xs">
           <div className="flex items-center justify-between gap-4 pb-5 border-b border-slate-100"><div><p className="text-[10px] uppercase tracking-wider font-bold text-indigo-600">Account</p><p className="text-xs text-slate-400 mt-1">{meta.description}</p></div><span className="text-xs font-mono text-slate-400">/settings/{activeSection}</span></div>
@@ -217,10 +260,15 @@ export const SettingsView = () => {
           </div>
           <div className="mt-8 pt-5 border-t border-slate-100 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
             <span className="text-xs text-slate-400">{dirty ? 'Unsaved changes' : 'All changes are saved'}</span>
-            <button type="submit" disabled={isSaving || (activeSection === 'organization' && !activeOrg)} className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors">
-              {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-              {isSaving ? 'Saving…' : 'Save changes'}
-            </button>
+            <div className="flex items-center justify-end gap-2">
+              <button type="button" onClick={resetActiveSection} disabled={!dirty || isSaving} className="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-700 text-sm font-semibold hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                Reset
+              </button>
+              <button type="submit" disabled={isSaving || (activeSection === 'organization' && !activeOrg)} className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors">
+                {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                {isSaving ? 'Saving…' : 'Save changes'}
+              </button>
+            </div>
           </div>
         </form>
       </div>
