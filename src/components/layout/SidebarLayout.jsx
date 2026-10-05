@@ -3,7 +3,7 @@ import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useOrg } from '../../context/OrgContext';
 import {
-  Shield, Building2, Monitor, LogOut, CheckCircle2, AlertTriangle,
+  Shield, Building2, Monitor, LogOut, CheckCircle2, AlertTriangle, Bell,
   ChevronDown, Plus, LayoutDashboard, Settings, Menu, X, Search, Sparkles, ChevronRight
 } from 'lucide-react';
 
@@ -236,6 +236,19 @@ export const SidebarLayout = ({ children }) => {
                 >
                   <Settings className="w-4 h-4" />
                   <span>Account Settings</span>
+                </NavLink>
+
+                <NavLink
+                  to="/notifications"
+                  onClick={() => setIsMobileSidebarOpen(false)}
+                  className={({ isActive }) =>
+                    `flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-colors ${isActive
+                      ? 'bg-indigo-600 text-white font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`
+                  }
+                >
+                  <Bell className="w-4 h-4" />
+                  <span>Notifications</span>
                 </NavLink>
 
                 <NavLink
