@@ -1,4 +1,4 @@
-import { ApiClient, type ApiClientOptions } from '../../../lib/api-client.js';
+import { ApiClient } from '../../../lib/api-client.js';
 export interface ReportMetadata { key:string; title:string; description:string; category:string; requiredPermission?:string; filters:readonly Record<string,unknown>[]; formats:readonly string[]; }
 export interface ReportRunInput { filters:Record<string,unknown>; limit?:number; offset?:number; }
 export interface ReportRunResult { report:{key:string;title:string;category:string}; filters:Record<string,unknown>; summary:Record<string,string|number|boolean|null>; rows:Record<string,string|number|boolean|null>[]; total:number; limit:number; offset:number; tookMs:number; generatedAt:string; }
