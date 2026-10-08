@@ -2,6 +2,5 @@ export * from './types.js';
 export * from './validation.js';
 export * from './accessibility.js';
 export * from './user-management.js';
-export * from './services/user.service.js';
 export * from './services/user-api.js';
 export * from './components/user-management-view.js';
