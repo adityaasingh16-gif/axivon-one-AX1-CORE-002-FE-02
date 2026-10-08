@@ -1,4 +1,4 @@
-import { ApiClient, type ApiClientOptions } from '../../../lib/api-client.js';
+import { ApiClient } from '../../../lib/api-client.js';
 export interface RoleProfile { id:string; name:string; description?:string; permissions?:string[]; [key:string]:unknown; }
 export interface RoleListResult { items:RoleProfile[]; total:number; page:number; pageSize:number; totalPages:number; }
 export class RoleApiClient extends ApiClient {
