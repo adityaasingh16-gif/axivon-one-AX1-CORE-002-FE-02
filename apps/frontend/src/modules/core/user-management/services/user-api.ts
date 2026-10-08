@@ -1,4 +1,4 @@
-import { ApiClient, type ApiClientOptions } from '../../../../lib/api-client.js';
+import { ApiClient } from '../../../../lib/api-client.js';
 export interface UserProfile { id:string; email:string; firstName:string; lastName:string; phone?:string; avatarUrl?:string; status:string; organizationId:string; [key:string]:unknown; }
 export interface UserListResult { items:UserProfile[]; total:number; page:number; pageSize:number; totalPages:number; }
 export interface UserListQuery { page?:number; pageSize?:number; status?:string; search?:string; }
