@@ -1,27 +1,65 @@
 import type { SearchQuery, SearchResponse } from './contracts';
 
-const SEARCH_ENDPOINT = '/search';
+const SEARCH_ENDPOINT = '/api/v1/search';
 
-function buildSearchUrl(input: SearchQuery): string {
-  const params = new URLSearchParams();
-  if (input.query.trim()) params.set('q', input.query.trim());
-  if (input.page !== undefined) params.set('page', String(input.page));
-  if (input.pageSize !== undefined) params.set('pageSize', String(input.pageSize));
-  input.entityTypes?.forEach((type) => params.append('entityType', type));
-  const query = params.toString();
-  return query ? SEARCH_ENDPOINT + '?' + query : SEARCH_ENDPOINT;
-}
-
-function isSearchResponse(value: unknown): value is SearchResponse {
-  if (!value || typeof value !== 'object') return false;
-  const candidate = value as Partial<SearchResponse>;
-  return Array.isArray(candidate.data) && !!candidate.meta && typeof candidate.meta.total === 'number';
+interface SearchApiEnvelope {
+  success: true;
+  data: {
+    query: { q: string; types: string[]; limit: number; offset: number };
+    total: number;
+    tookMs: number;
+    hits: Array<{
+      documentType: string;
+      documentId: string;
+      organizationId: string | null;
+      title: string;
+      snippet?: string;
+      url?: string;
+      score?: number;
+      metadata?: Record<string, unknown>;
+      indexedAt: string;
+    }>;
+  };
+  message?: string;
+  timestamp: string;
+  meta?: Record<string, unknown>;
 }
 
 export async function search(input: SearchQuery, signal?: AbortSignal): Promise<SearchResponse> {
-  const response = await fetch(buildSearchUrl(input), { method: 'GET', headers: { Accept: 'application/json' }, signal });
+  const params = new URLSearchParams();
+  if (input.query.trim()) params.set('q', input.query.trim());
+  if (input.page !== undefined) params.set('offset', String(Math.max(0, (input.page - 1) * (input.pageSize ?? 20))));
+  if (input.pageSize !== undefined) params.set('limit', String(input.pageSize));
+  input.entityTypes?.forEach((type) => params.append('types', type));
+
+  const response = await fetch(`${SEARCH_ENDPOINT}?${params.toString()}`, {
+    method: 'GET',
+    headers: { Accept: 'application/json' },
+    signal,
+  });
+
   if (!response.ok) throw new Error('Search request failed (' + response.status + ')');
-  const payload: unknown = await response.json();
-  if (!isSearchResponse(payload)) throw new Error('Search response does not match the approved contract.');
-  return payload;
+
+  const payload = (await response.json()) as SearchApiEnvelope;
+  if (!payload.success || !payload.data || !Array.isArray(payload.data.hits)) {
+    throw new Error('Search response does not match the approved API contract.');
+  }
+
+  return {
+    data: payload.data.hits.map((hit) => ({
+      id: hit.documentId,
+      entityType: hit.documentType,
+      title: hit.title,
+      snippet: hit.snippet,
+      url: hit.url,
+      score: hit.score,
+      metadata: hit.metadata,
+    })),
+    meta: {
+      total: payload.data.total,
+      page: input.page ?? 1,
+      pageSize: input.pageSize ?? payload.data.query.limit,
+      totalPages: Math.ceil(payload.data.total / (input.pageSize ?? payload.data.query.limit)),
+    },
+  };
 }
