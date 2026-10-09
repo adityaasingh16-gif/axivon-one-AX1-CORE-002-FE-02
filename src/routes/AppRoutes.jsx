@@ -15,6 +15,7 @@ import { OrganizationDetailsView } from '../views/OrganizationDetailsView';
 import { OrganizationEditView } from '../views/OrganizationEditView';
 import { SettingsView } from '../views/SettingsView';
 import { NotificationsView } from '../views/NotificationsView';
+import { EmployeeManagementView } from '../views/EmployeeManagementView';
 
 // Layout & Route Guards
 import { SidebarLayout } from '../components/layout/SidebarLayout';
@@ -76,6 +77,14 @@ export const AppRoutes = () => {
       />
 
       {/* Protected Member Routes */}
+      <Route
+        path="/employees"
+        element={
+          <ProtectedView>
+            <EmployeeManagementView />
+          </ProtectedView>
+        }
+      />
       <Route
         path="/notifications"
         element={

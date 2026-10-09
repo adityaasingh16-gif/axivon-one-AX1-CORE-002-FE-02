@@ -24,10 +24,14 @@ const router: AuthRouter = {
   routes: () => [
     ...app.modules.authentication.router.routes(),
     ...app.modules.userManagement.router.routes(),
+    ...app.modules.employeeManagement.router.routes(),
   ],
   handle: async (request) => {
     if (request.path.startsWith('/api/v1/users')) {
       return app.modules.userManagement.router.handle(request);
+    }
+    if (request.path.startsWith('/api/v1/employees')) {
+      return app.modules.employeeManagement.router.handle(request);
     }
     return app.modules.authentication.router.handle(request);
   },
@@ -41,7 +45,7 @@ const server = createServer(
 );
 
 server.on('error', (error) => {
-  console.error(JSON.stringify({ scope: 'server', event: 'error', message: error.message }));
+  console.error(JSON.stringify({ scope:'server', event:'error', message:error.message }));
   process.exitCode = 1;
 });
 

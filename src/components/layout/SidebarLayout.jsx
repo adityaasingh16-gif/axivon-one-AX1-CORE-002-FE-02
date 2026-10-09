@@ -3,7 +3,7 @@ import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useOrg } from '../../context/OrgContext';
 import {
-  Shield, Building2, Monitor, LogOut, CheckCircle2, AlertTriangle, Bell,
+  Shield, Building2, Monitor, LogOut, CheckCircle2, AlertTriangle, Bell, Users,
   ChevronDown, Plus, LayoutDashboard, Settings, Menu, X, Search, Sparkles, ChevronRight
 } from 'lucide-react';
 
@@ -24,6 +24,7 @@ export const SidebarLayout = ({ children }) => {
   const getBreadcrumbs = () => {
     const path = location.pathname;
     if (path.startsWith('/dashboard')) return [{ label: 'Overview', path: '/dashboard' }, { label: 'Dashboard' }];
+    if (path.startsWith('/employees')) return [{ label: 'People', path: '/employees' }, { label: 'Employee Management' }];
     if (path === '/organizations') return [{ label: 'Workspaces', path: '/organizations' }, { label: 'All Organizations' }];
     if (path === '/organizations/new') return [{ label: 'Workspaces', path: '/organizations' }, { label: 'Setup New Organization' }];
     if (path.includes('/edit')) return [{ label: 'Workspaces', path: '/organizations' }, { label: activeOrg?.name || 'Workspace', path: `/organizations/${activeOrg?.id}` }, { label: 'Settings' }];
@@ -159,6 +160,11 @@ export const SidebarLayout = ({ children }) => {
                 >
                   <LayoutDashboard className="w-4 h-4" />
                   <span>Dashboard</span>
+                </NavLink>
+
+                <NavLink to="/employees" onClick={() => setIsMobileSidebarOpen(false)} className="flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+                  <Users className="w-4 h-4" />
+                  <span>Employees</span>
                 </NavLink>
 
                 <NavLink

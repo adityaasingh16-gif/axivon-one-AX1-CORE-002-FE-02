@@ -16,10 +16,11 @@
     "build:backend": "npm run build --workspace @axivon/backend",
     "lint": "oxlint && npm run lint --workspaces --if-present",
     "preview": "vite preview",
-    "test": "npm run test --workspaces --if-present && npm run test:auth && npm run test:users",
+    "test": "npm run test --workspaces --if-present && npm run test:auth && npm run test:users && npm run test:bus-007",
     "test:auth": "vitest run modules/core/authentication/tests --exclude 'apps/frontend/**' --exclude 'apps/backend/dist/**'",
     "test:users": "vitest run modules/core/user-management/tests --exclude 'apps/frontend/**' --exclude 'apps/backend/dist/**'",
-    "test:unit": "npm run test:auth && npm run test:users",
+    "test:bus-007": "vitest run modules/business/bus-007/tests --exclude 'apps/backend/dist/**'",
+    "test:unit": "npm run test:auth && npm run test:users && npm run test:bus-007",
     "test:integration": "echo 'Integration tests placeholder'",
     "test:e2e": "echo 'E2E tests placeholder'",
     "typecheck": "tsc --noEmit"
