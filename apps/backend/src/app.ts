@@ -1,9 +1,7 @@
 // AXIVON ONE Backend Application Core
 //
-// The application composition root wires the CORE-001 authentication and
-// CORE-002 user-management modules. Database-backed adapters are selected when
-// DATABASE_URL is present; tests and local work without a database keep using
-// the injected in-memory defaults.
+// The application composition root wires authentication, user management and
+// the BUS-007 employee-management workflow.
 
 import { APP_CONFIG } from '../../../packages/config/src/index.js';
 import {
@@ -16,6 +14,7 @@ import {
   createUserManagementModule,
   type UserManagementModule,
 } from '../../../modules/core/user-management/backend/index.js';
+import { createEmployeeModule, type EmployeeModule } from '../../../modules/business/bus-007/backend/index.js';
 
 export interface BackendApp {
   name: string;
@@ -24,6 +23,7 @@ export interface BackendApp {
   modules: {
     authentication: AuthenticationModule;
     userManagement: UserManagementModule;
+    employeeManagement: EmployeeModule;
   };
 }
 
@@ -41,14 +41,12 @@ export const createApp = (): BackendApp => {
     pool,
     databaseUrl,
   });
+  const employeeManagement = createEmployeeModule(authentication.authGuard);
 
   return {
     name: APP_CONFIG.organization,
     phase: APP_CONFIG.phase,
     initialized: true,
-    modules: {
-      authentication,
-      userManagement,
-    },
+    modules: { authentication, userManagement, employeeManagement },
   };
 };
