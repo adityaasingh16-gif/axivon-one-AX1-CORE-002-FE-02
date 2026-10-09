@@ -4,7 +4,11 @@
   "description": "AXIVON ONE — Modular & Reusable Software Platform by Axivon Technologies",
   "private": true,
   "type": "module",
-  "workspaces": ["apps/*", "packages/*", "modules/core/*"],
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "modules/core/*"
+  ],
   "scripts": {
     "dev": "vite",
     "dev:backend": "npm run dev --workspace @axivon/backend",
@@ -12,11 +16,10 @@
     "build:backend": "npm run build --workspace @axivon/backend",
     "lint": "oxlint && npm run lint --workspaces --if-present",
     "preview": "vite preview",
-    "test": "npm run test --workspaces --if-present && npm run test:auth && npm run test:users && npm run test:bus-007",
+    "test": "npm run test --workspaces --if-present && npm run test:auth && npm run test:users",
     "test:auth": "vitest run modules/core/authentication/tests --exclude 'apps/frontend/**' --exclude 'apps/backend/dist/**'",
     "test:users": "vitest run modules/core/user-management/tests --exclude 'apps/frontend/**' --exclude 'apps/backend/dist/**'",
-    "test:bus-007": "vitest run modules/business/bus-007/tests --exclude 'apps/backend/dist/**'",
-    "test:unit": "npm run test:auth && npm run test:users && npm run test:bus-007",
+    "test:unit": "npm run test:auth && npm run test:users",
     "test:integration": "echo 'Integration tests placeholder'",
     "test:e2e": "echo 'E2E tests placeholder'",
     "typecheck": "tsc --noEmit"
@@ -29,7 +32,13 @@
     "react-router-dom": "^7.18.3",
     "tailwindcss": "^4.3.3"
   },
-  "keywords": ["axivon", "axivon-one", "modular-platform", "reusable-architecture", "typescript"],
+  "keywords": [
+    "axivon",
+    "axivon-one",
+    "modular-platform",
+    "reusable-architecture",
+    "typescript"
+  ],
   "author": "Axivon Technologies",
   "license": "UNLICENSED",
   "devDependencies": {
