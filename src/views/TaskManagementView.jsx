@@ -167,7 +167,8 @@ export function TaskManagementView() {
       await taskApi.remove(task.id, { token, organizationId });
       setNotice('Task deleted.');
       if (showToast) showToast('Task deleted.', 'success');
-      setRefreshKey((value) => value + 1);
+      if (items.length === 1 && page > 1) setPage((value) => Math.max(1, value - 1));
+      else setRefreshKey((value) => value + 1);
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'Unable to delete task.');
     } finally {
@@ -256,7 +257,7 @@ export function TaskManagementView() {
           {loading ? (
             <section className="task-state" role="status"><LoaderCircle className="task-spin" aria-hidden="true" /><p>Loading tasks…</p></section>
           ) : items.length === 0 ? (
-            <section className="task-state task-state--empty"><ClipboardList aria-hidden="true" /><h2>No tasks found</h2><p>Create a task or adjust your search and filters to find matching work.</p>{permissions.canCreate && <button className="task-button task-button--primary" type="button" onClick={startCreate}><Plus size={15} aria-hidden="true" /> Create task</button>}</section>
+            <section className="task-state task-state--empty"><ClipboardList aria-hidden="true" /><h2>No tasks found</h2><p>{permissions.canCreate ? 'Create a task or adjust your search and filters to find matching work.' : 'Try adjusting your search and filters to find matching work.'}</p>{permissions.canCreate && <button className="task-button task-button--primary" type="button" onClick={startCreate}><Plus size={15} aria-hidden="true" /> Create task</button>}</section>
           ) : isBoard ? (
             <section className="task-board" aria-label="Tasks grouped by status">
               {TASK_STATUSES.filter((value) => value !== 'cancelled').map((value) => {
