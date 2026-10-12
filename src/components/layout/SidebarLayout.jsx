@@ -3,7 +3,7 @@ import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useOrg } from '../../context/OrgContext';
 import {
-  Shield, Building2, Monitor, LogOut, CheckCircle2, AlertTriangle, Bell, Users,
+  Shield, Building2, Monitor, LogOut, CheckCircle2, AlertTriangle, Bell, Users, ClipboardList,
   ChevronDown, Plus, LayoutDashboard, Settings, Menu, X, Search, Sparkles, ChevronRight
 } from 'lucide-react';
 
@@ -24,6 +24,7 @@ export const SidebarLayout = ({ children }) => {
   const getBreadcrumbs = () => {
     const path = location.pathname;
     if (path.startsWith('/dashboard')) return [{ label: 'Overview', path: '/dashboard' }, { label: 'Dashboard' }];
+    if (path.startsWith('/tasks')) return [{ label: 'Work Management', path: '/tasks' }, { label: path.startsWith('/tasks/board') ? 'Task Board' : path.startsWith('/tasks/settings') ? 'Task Settings' : 'Task Management' }];
     if (path.startsWith('/employees')) return [{ label: 'People', path: '/employees' }, { label: 'Employee Management' }];
     if (path === '/organizations') return [{ label: 'Workspaces', path: '/organizations' }, { label: 'All Organizations' }];
     if (path === '/organizations/new') return [{ label: 'Workspaces', path: '/organizations' }, { label: 'Setup New Organization' }];
@@ -165,6 +166,11 @@ export const SidebarLayout = ({ children }) => {
                 <NavLink to="/employees" onClick={() => setIsMobileSidebarOpen(false)} className="flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100">
                   <Users className="w-4 h-4" />
                   <span>Employees</span>
+                </NavLink>
+
+                <NavLink to="/tasks" onClick={() => setIsMobileSidebarOpen(false)} className={({ isActive }) => `flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-colors ${isActive ? 'bg-indigo-600 text-white font-semibold shadow-xs' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}>
+                  <ClipboardList className="w-4 h-4" />
+                  <span>Tasks</span>
                 </NavLink>
 
                 <NavLink
