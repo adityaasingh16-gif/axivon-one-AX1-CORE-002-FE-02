@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AlertCircle, CalendarDays, CheckCircle2, ClipboardList, LayoutGrid, List, LoaderCircle, Pencil, Plus, RefreshCw, Search, Trash2, X } from 'lucide-react';
+import { AlertCircle, CalendarDays, CheckCircle2, ClipboardList, LayoutGrid, List, LoaderCircle, Pencil, Plus, Search, Trash2, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useOrg } from '../context/OrgContext';
 import { taskApi } from '../services/taskApi';
