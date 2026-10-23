@@ -1,0 +1,26 @@
+.business-shell { display: grid; gap: 1.25rem; color: #0f172a; }
+.business-shell__header { align-items: end; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
+.business-shell__eyebrow { color: #64748b; font-size: .7rem; font-weight: 800; letter-spacing: .12em; margin: 0 0 .4rem; }
+.business-shell__header h1 { font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 750; letter-spacing: -.03em; margin: 0; }
+.business-shell__header p:last-child { color: #64748b; margin: .4rem 0 0; }
+.business-shell__home { color: #4f46e5; font-size: .85rem; font-weight: 700; }
+.business-shell__nav { border-bottom: 1px solid #e2e8f0; display: flex; flex-wrap: wrap; gap: .35rem; padding-bottom: .65rem; }
+.business-shell__nav a { border-radius: .55rem; color: #475569; font-size: .82rem; font-weight: 650; padding: .55rem .75rem; text-decoration: none; }
+.business-shell__nav a:hover { background: #f1f5f9; color: #0f172a; }
+.business-shell__nav a.active { background: #eef2ff; color: #4338ca; }
+.business-shell__content { min-width: 0; }
+.business-module-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.business-module-card { background: #fff; border: 1px solid #e2e8f0; border-radius: .85rem; box-shadow: 0 3px 10px #0f172a0a; color: inherit; display: grid; gap: .45rem; padding: 1.1rem; text-decoration: none; transition: border-color .15s, transform .15s; }
+.business-module-card:hover { border-color: #a5b4fc; transform: translateY(-2px); }
+.business-module-card > span { color: #6366f1; font-size: .7rem; font-weight: 800; letter-spacing: .08em; }
+.business-module-card h2 { font-size: 1.05rem; font-weight: 750; margin: 0; }
+.business-module-card p { color: #64748b; font-size: .85rem; margin: 0; }
+.business-module-card strong { color: #4f46e5; font-size: .8rem; margin-top: .4rem; }
+.business-state { align-items: start; background: white; border: 1px solid #e2e8f0; border-radius: .75rem; color: #475569; display: grid; gap: .4rem; padding: 1.1rem; }
+.business-state h2, .business-state p { margin: 0; }
+.business-state h2 { color: #0f172a; font-size: 1rem; }
+.business-state--error { border-color: #fecaca; color: #991b1b; }
+.business-state--error button { background: #fff; border: 1px solid #fecaca; border-radius: .45rem; color: #991b1b; justify-self: start; margin-top: .25rem; padding: .45rem .7rem; }
+.business-state__spinner { animation: business-spin .8s linear infinite; border: 2px solid #c7d2fe; border-radius: 50%; border-top-color: #4f46e5; height: 1rem; width: 1rem; }
+@keyframes business-spin { to { transform: rotate(360deg); } }
+@media (max-width: 640px) { .business-shell__nav { gap: .15rem; } .business-shell__nav a { font-size: .76rem; padding: .5rem; } }
